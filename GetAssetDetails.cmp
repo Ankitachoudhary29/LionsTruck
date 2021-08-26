@@ -1,0 +1,48 @@
+<aura:component controller="GetAssetDeatilsCtrl" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,force:hasRecordId" access="global" >
+	
+    
+    
+     <aura:attribute name="loading" type="Boolean" default="false"/>
+    <aura:attribute name="showError" type="Boolean" default="false"/>
+    <aura:attribute name="errorMessage" type="String"/>
+    <aura:attribute name="showSuccess" type="Boolean" default="false"/>
+    <aura:attribute name="successMessage" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="slds-is-relative">
+            <aura:if isTrue="{! v.loading }">
+                    Connecting, please wait. . .
+                <lightning:spinner size="large" variant="brand" alternativeText="Loading" />
+            </aura:if>
+            <!-- OTHER MODAL MARK-UP HERE -->
+            <aura:if isTrue="{!v.showError }">
+                <!-- Show the message to ui -->
+                <div class="slds-notify slds-notify_toast slds-theme_error">
+                    <span class="slds-assistive-text">Error</span>
+                    <div class="slds-notify__content">
+                        <h5 class="slds-text-heading_small slds-align_absolute-center">Error Message </h5>
+                        <br/>
+                        <p class="slds-align_absolute-center">{!v.errorMessage}</p>                
+                    </div>
+                </div>  
+            </aura:if>
+            <aura:if isTrue="{!v.showSuccess }">
+                <!-- Show the message to ui -->
+                <div class="slds-notify slds-notify_toast slds-theme_success">
+                    <span class="slds-assistive-text">Success</span>
+                    <div class="slds-notify__content">
+                        <h5 class="slds-text-heading_small slds-align_absolute-center">Success Message </h5>
+                        <br/>
+                        <p class="slds-align_absolute-center">{!v.successMessage}</p>                
+                    </div>
+                </div>  
+            </aura:if>
+        </div>
+    </div>
+    
+</aura:component>
